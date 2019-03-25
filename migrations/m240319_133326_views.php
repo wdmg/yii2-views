@@ -30,7 +30,6 @@ class m240319_133326_views extends Migration
         $this->createIndex('idx_views_user','{{%views}}', ['user_id'],false);
         $this->createIndex('idx_views_condition','{{%views}}', ['condition'],false);
         $this->createIndex('idx_views_session','{{%views}}', ['session'],false);
-        $this->createIndex('idx_views_published','{{%views}}', ['is_published'],false);
 
         // If exist module `Users` set foreign key `user_id` to `users.id`
         if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
@@ -56,7 +55,6 @@ class m240319_133326_views extends Migration
         $this->dropIndex('idx_views_user', '{{%views}}');
         $this->dropIndex('idx_views_condition', '{{%views}}');
         $this->dropIndex('idx_views_session', '{{%views}}');
-        $this->dropIndex('idx_views_published', '{{%views}}');
 
         if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
             $userTable = \wdmg\users\models\Users::tableName();
