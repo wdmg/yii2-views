@@ -1,11 +1,11 @@
 [![Progress](https://img.shields.io/badge/required-Yii2_v2.0.13-blue.svg)](https://packagist.org/packages/yiisoft/yii2)
-[![Github all releases](https://img.shields.io/github/downloads/wdmg/yii2-likes/total.svg)](https://GitHub.com/wdmg/yii2-likes/releases/)
-[![GitHub version](https://badge.fury.io/gh/wdmg/Fyii2-likes.svg)](https://github.com/wdmg/yii2-likes)
+[![Github all releases](https://img.shields.io/github/downloads/wdmg/yii2-views/total.svg)](https://GitHub.com/wdmg/yii2-views/releases/)
+[![GitHub version](https://badge.fury.io/gh/wdmg/yii2-views.svg)](https://github.com/wdmg/yii2-views)
 ![Progress](https://img.shields.io/badge/progress-in_development-red.svg)
-[![GitHub license](https://img.shields.io/github/license/wdmg/yii2-likes.svg)](https://github.com/wdmg/yii2-likes/blob/master/LICENSE)
+[![GitHub license](https://img.shields.io/github/license/wdmg/yii2-views.svg)](https://github.com/wdmg/yii2-views/blob/master/LICENSE)
 
-# Yii2 User likes Module
-System of accounting user likes
+# Yii2 User views
+System of accounting user views
 
 # Requirements 
 * PHP 5.6 or higher
@@ -15,11 +15,11 @@ System of accounting user likes
 # Installation
 To install the module, run the following command in the console:
 
-`$ composer require "wdmg/yii2-likes"`
+`$ composer require "wdmg/yii2-views"`
 
 After configure db connection, run the following command in the console:
 
-`$ php yii likes/init`
+`$ php yii views/init`
 
 And select the operation you want to perform:
   1) Apply all module migrations
@@ -28,15 +28,15 @@ And select the operation you want to perform:
 # Migrations
 In any case, you can execute the migration and create the initial data, run the following command in the console:
 
-`$ php yii migrate --migrationPath=@vendor/wdmg/yii2-likes/migrations`
+`$ php yii migrate --migrationPath=@vendor/wdmg/yii2-views/migrations`
 
 # Configure
 To add a module to the project, add the following data in your configuration file:
 
     'modules' => [
         ...
-        'likes' => [
-            'class' => 'wdmg\likes\Module',
+        'views' => [
+            'class' => 'wdmg\views\Module',
             'routePrefix' => 'admin'
         ],
         ...
@@ -45,7 +45,7 @@ To add a module to the project, add the following data in your configuration fil
 If you have connected the module not via a composer add Bootstrap section:
 
 `
-$config['bootstrap'][] = 'wdmg\likes\Bootstrap';
+$config['bootstrap'][] = 'wdmg\views\Bootstrap';
 `
 
 # Routing
@@ -56,13 +56,11 @@ Use the `Module::dashboardNavItems()` method of the module to generate a navigat
         'options' => ['class' => 'navbar-nav navbar-right'],
             'label' => 'Modules',
             'items' => [
-                Yii::$app->getModule('likes')->dashboardNavItems(),
+                Yii::$app->getModule('views')->dashboardNavItems(),
                 ...
             ]
         ]);
     ?>
 
 # Status and version [in progress development]
-* v.0.0.3 - Refactoring migrations and models
-* v.0.0.2 - Added base model, CRUD
-* v.0.0.1 - Added base migrations
+* v.0.0.3 -  Refactoring migrations and models
