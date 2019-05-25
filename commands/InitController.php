@@ -5,7 +5,6 @@ namespace wdmg\views\commands;
 use Yii;
 use yii\console\Controller;
 use yii\console\ExitCode;
-
 use yii\helpers\Console;
 use yii\helpers\ArrayHelper;
 

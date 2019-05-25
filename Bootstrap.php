@@ -10,6 +10,7 @@ namespace wdmg\views;
 
 use yii\base\BootstrapInterface;
 use Yii;
+use wdmg\views\components\Views;
 
 
 class Bootstrap implements BootstrapInterface
@@ -26,11 +27,30 @@ class Bootstrap implements BootstrapInterface
         $app->getUrlManager()->addRules(
             [
                 $prefix . '<module:views>/' => '<module>/views/index',
-                $prefix . '<module:views>/<controller>/' => '<module>/<controller>',
-                $prefix . '<module:views>/<controller>/<action>' => '<module>/<controller>/<action>',
-                $prefix . '<module:views>/<controller>/<action>' => '<module>/<controller>/<action>',
+                $prefix . '<module:views>/<controller:\w+>/' => '<module>/<controller>',
+                $prefix . '<module:views>/<controller:\w+>/<action:\w+>' => '<module>/<controller>/<action>',
+                [
+                    'pattern' => $prefix . '<module:views>/',
+                    'route' => '<module>/views/index',
+                    'suffix' => '',
+                ], [
+                'pattern' => $prefix . '<module:views>/<controller:\w+>/',
+                'route' => '<module>/<controller>',
+                'suffix' => '',
+            ], [
+                'pattern' => $prefix . '<module:views>/<controller:\w+>/<action:\w+>',
+                'route' => '<module>/<controller>/<action>',
+                'suffix' => '',
+            ],
             ],
             true
         );
+
+        // Configure options component
+        $app->setComponents([
+            'views' => [
+                'class' => Views::className()
+            ]
+        ]);
     }
 }

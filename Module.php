@@ -3,10 +3,10 @@
 namespace wdmg\views;
 
 /**
- * Yii2 User views
+ * Yii2 Views
  *
  * @category        Module
- * @version         0.0.2
+ * @version         0.0.3
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -44,12 +44,12 @@ class Module extends \yii\base\Module
     /**
      * @var string the module version
      */
-    private $version = "0.0.2";
+    private $version = "0.0.3";
 
     /**
      * @var integer, priority of initialization
      */
-    private $priority = 8;
+    private $priority = 10;
 
     /**
      * @var array of strings missing translations

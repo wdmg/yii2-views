@@ -9,13 +9,15 @@ use Yii;
  *
  * @property int $id
  * @property int $user_id
- * @property string $condition
+ * @property string $user_ip
+ * @property string $entity_id
+ * @property int $target_id
  * @property string $created_at
  * @property string $updated_at
- * @property string $session
  *
  * @property Users $user
  */
+
 class Views extends \yii\db\ActiveRecord
 {
     /**
@@ -32,16 +34,17 @@ class Views extends \yii\db\ActiveRecord
     public function rules()
     {
         $rules = [
-            [['user_id'], 'integer'],
-            [['condition', 'session'], 'required'],
+            [['user_id', 'target_id'], 'integer'],
+            [['user_ip', 'entity_id', 'target_id'], 'required'],
+            [['user_ip'], 'string', 'max' => 39],
+            [['entity_id'], 'string', 'max' => 32],
             [['created_at', 'updated_at'], 'safe'],
-            [['condition'], 'string', 'max' => 64],
-            [['session'], 'string', 'max' => 32],
         ];
 
-        if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users']))
+        if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
+            $rules[] = [['user_id'], 'required'];
             $rules[] = [['user_id'], 'exist', 'skipOnError' => true, 'targetClass' => \wdmg\users\models\Users::className(), 'targetAttribute' => ['user_id' => 'id']];
-
+        }
         return $rules;
     }
 
@@ -53,10 +56,11 @@ class Views extends \yii\db\ActiveRecord
         return [
             'id' => Yii::t('app/modules/views', 'ID'),
             'user_id' => Yii::t('app/modules/views', 'User ID'),
-            'condition' => Yii::t('app/modules/views', 'Condition'),
+            'user_ip' => Yii::t('app/modules/views', 'User IP'),
+            'entity_id' => Yii::t('app/modules/views', 'Entity'),
+            'target_id' => Yii::t('app/modules/views', 'Target'),
             'created_at' => Yii::t('app/modules/views', 'Created At'),
             'updated_at' => Yii::t('app/modules/views', 'Updated At'),
-            'session' => Yii::t('app/modules/views', 'Session'),
         ];
     }
 
@@ -65,6 +69,9 @@ class Views extends \yii\db\ActiveRecord
      */
     public function getUser()
     {
-        return $this->hasOne(Users::className(), ['id' => 'user_id']);
+        if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users']))
+            return $this->hasOne(\wdmg\users\models\Users::className(), ['id' => 'user_id']);
+        else
+            return null;
     }
 }

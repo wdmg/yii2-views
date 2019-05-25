@@ -4,37 +4,38 @@ use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
 /* @var $this yii\web\View */
-/* @var $searchModel wdmg\views\models\ViewsSearch */
+/* @var $searchModel wdmg\likes\models\LikesSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app/modules/views', 'Views');
+$this->title = Yii::t('app/modules/likes', 'Likes');
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
-<div class="views-index">
-
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="page-header">
+    <h1>
+        <?= Html::encode($this->title) ?> <small class="text-muted pull-right">[v.<?= $this->context->module->version ?>]</small>
+    </h1>
+</div>
+<div class="options-index">
     <?php Pjax::begin(); ?>
-    <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
-
-    <p>
-        <?= Html::a(Yii::t('app/modules/views', 'Create Views'), ['create'], ['class' => 'btn btn-success']) ?>
-    </p>
-
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
+        'layout' => '{summary}<br\/>{items}<br\/>{summary}<br\/><div class="text-center">{pager}</div>',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'id',
             'user_id',
-            'condition',
+            'user_ip',
+            'entity_id',
+            'target_id',
+            'is_like',
             'created_at',
             'updated_at',
-            //'session',
-
-            ['class' => 'yii\grid\ActionColumn'],
         ],
     ]); ?>
+    <hr/>
     <?php Pjax::end(); ?>
 </div>
+
+<?php echo $this->render('../_debug'); ?>
