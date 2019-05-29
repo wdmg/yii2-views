@@ -6,7 +6,7 @@ namespace wdmg\views;
  * Yii2 Views
  *
  * @category        Module
- * @version         0.0.3
+ * @version         0.0.4
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -17,7 +17,7 @@ namespace wdmg\views;
 use Yii;
 
 /**
- * views module definition class
+ * Views module definition class
  */
 class Module extends \yii\base\Module
 {
@@ -37,6 +37,16 @@ class Module extends \yii\base\Module
     public $routePrefix = "admin";
 
     /**
+     * @var string, the name of module
+     */
+    public $name = "Views";
+
+    /**
+     * @var string, the description of module
+     */
+    public $description = "System of accounting user views";
+
+    /**
      * @var string the vendor name of module
      */
     private $vendor = "wdmg";
@@ -44,7 +54,7 @@ class Module extends \yii\base\Module
     /**
      * @var string the module version
      */
-    private $version = "0.0.3";
+    private $version = "0.0.4";
 
     /**
      * @var integer, priority of initialization
@@ -114,6 +124,10 @@ class Module extends \yii\base\Module
 
             },
         ];
+
+        // Name and description translation of module
+        $this->name = Yii::t('app/modules/users', $this->name);
+        $this->description = Yii::t('app/modules/users', $this->description);
     }
 
     public static function t($category, $message, $params = [], $language = null)
@@ -142,7 +156,7 @@ class Module extends \yii\base\Module
     public function dashboardNavItems()
     {
         return [
-            'label' => Yii::t('app/modules/views', 'Views'),
+            'label' => $this->name,
             'url' => [$this->routePrefix . '/views/'],
             'active' => in_array(\Yii::$app->controller->module->id, ['views'])
         ];

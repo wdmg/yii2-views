@@ -21,7 +21,12 @@ class Bootstrap implements BootstrapInterface
         $module = Yii::$app->getModule('views');
 
         // Get URL path prefix if exist
-        $prefix = (isset($module->routePrefix) ? $module->routePrefix . '/' : '');
+        if (isset($module->routePrefix)) {
+            $app->getUrlManager()->enableStrictParsing = true;
+            $prefix = $module->routePrefix . '/';
+        } else {
+            $prefix = '';
+        }
 
         // Add module URL rules
         $app->getUrlManager()->addRules(
@@ -34,14 +39,14 @@ class Bootstrap implements BootstrapInterface
                     'route' => '<module>/views/index',
                     'suffix' => '',
                 ], [
-                'pattern' => $prefix . '<module:views>/<controller:\w+>/',
-                'route' => '<module>/<controller>',
-                'suffix' => '',
-            ], [
-                'pattern' => $prefix . '<module:views>/<controller:\w+>/<action:\w+>',
-                'route' => '<module>/<controller>/<action>',
-                'suffix' => '',
-            ],
+                    'pattern' => $prefix . '<module:views>/<controller:\w+>/',
+                    'route' => '<module>/<controller>',
+                    'suffix' => '',
+                ], [
+                    'pattern' => $prefix . '<module:views>/<controller:\w+>/<action:\w+>',
+                    'route' => '<module>/<controller>/<action>',
+                    'suffix' => '',
+                ],
             ],
             true
         );

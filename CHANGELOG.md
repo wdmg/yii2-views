@@ -1,6 +1,9 @@
 Changelog
 =========
 
+## 0.0.4 (2019-05-29)
+ * Added module name and description, translations. Routing fix.
+ 
 ## 0.0.3 (2019-05-24)
  * Refactoring migrations and models
  
