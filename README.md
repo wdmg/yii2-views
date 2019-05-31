@@ -9,7 +9,7 @@ System of accounting user views
 
 # Requirements 
 * PHP 5.6 or higher
-* Yii2 v.2.0.13 and newest
+* Yii2 v.2.0.19 and newest
 * [Yii2 Users](https://github.com/wdmg/yii2-users) module (optionaly)
 
 # Installation
@@ -53,7 +53,7 @@ Use the `Module::dashboardNavItems()` method of the module to generate a navigat
 
     <?php
         echo Nav::widget([
-        'views' => ['class' => 'navbar-nav navbar-right'],
+        'options' => ['class' => 'navbar-nav navbar-right'],
             'label' => 'Modules',
             'items' => [
                 Yii::$app->getModule('views')->dashboardNavItems(),
@@ -63,5 +63,5 @@ Use the `Module::dashboardNavItems()` method of the module to generate a navigat
     ?>
 
 # Status and version [in progress development]
+* v.0.0.5 - Update Yii2 version
 * v.0.0.4 - Added module name and description, translations. Routing fix.
-* v.0.0.3 - Refactoring migrations and models
