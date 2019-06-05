@@ -4,7 +4,7 @@
   "keywords": ["yii2", "yii2-views", "views", "wdmg"],
   "type": "yii2-extension",
   "license": "MIT",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "homepage": "https://github.com/wdmg/yii2-views",
   "support": {
     "source": "https://github.com/wdmg/yii2-views",
@@ -21,15 +21,12 @@
     }
   ],
   "require": {
-    "yiisoft/yii2": "^2.0.19"
+    "yiisoft/yii2": "^2.0.20"
   },
   "minimum-stability": "dev",
   "autoload": {
     "psr-4": {
       "wdmg\\views\\": ""
     }
-  },
-  "extra": {
-    "bootstrap": "wdmg\\views\\Bootstrap"
   }
 }
