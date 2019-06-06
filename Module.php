@@ -6,7 +6,7 @@ namespace wdmg\views;
  * Yii2 Views
  *
  * @category        Module
- * @version         0.0.7
+ * @version         0.0.8
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -16,6 +16,7 @@ namespace wdmg\views;
 
 use Yii;
 use wdmg\base\BaseModule;
+use wdmg\views\components\Views;
 
 /**
  * Views module definition class
@@ -45,13 +46,31 @@ class Module extends BaseModule
     /**
      * @var string the module version
      */
-    private $version = "0.0.7";
+    private $version = "0.0.8";
 
     /**
      * @var integer, priority of initialization
      */
     private $priority = 10;
 
+    /**
+     * {@inheritdoc}
+     */
+    public function init()
+    {
+        parent::init();
+
+        // Set version of current module
+        $this->setVersion($this->version);
+
+        // Set priority of current module
+        $this->setPriority($this->priority);
+
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function bootstrap($app)
     {
         parent::bootstrap($app);

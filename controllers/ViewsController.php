@@ -8,6 +8,7 @@ use wdmg\views\models\ViewsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\filters\AccessControl;
 
 /**
  * ViewsController implements the CRUD actions for Views model.
@@ -26,6 +27,15 @@ class ViewsController extends Controller
                     'index' => ['get'],
                 ],
             ],
+            'access' => [
+                'class' => AccessControl::className(),
+                'rules' => [
+                    [
+                        'roles' => ['admin'],
+                        'allow' => true
+                    ],
+                ],
+            ]
         ];
     }
 
