@@ -6,7 +6,7 @@ namespace wdmg\views;
  * Yii2 Views
  *
  * @category        Module
- * @version         0.0.8
+ * @version         0.0.9
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -46,7 +46,7 @@ class Module extends BaseModule
     /**
      * @var string the module version
      */
-    private $version = "0.0.8";
+    private $version = "0.0.9";
 
     /**
      * @var integer, priority of initialization

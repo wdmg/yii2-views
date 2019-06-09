@@ -1,10 +1,10 @@
 {
   "name": "wdmg/yii2-views",
-  "description": "System of accounting user views for Yii2",
+  "description": "System of accounting user views",
   "keywords": ["yii2", "yii2-views", "views", "wdmg"],
   "type": "yii2-extension",
   "license": "MIT",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "homepage": "https://github.com/wdmg/yii2-views",
   "support": {
     "source": "https://github.com/wdmg/yii2-views",
