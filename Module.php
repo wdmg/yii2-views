@@ -6,7 +6,7 @@ namespace wdmg\views;
  * Yii2 Views
  *
  * @category        Module
- * @version         0.0.9
+ * @version         0.0.10
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 W.D.M.Group, Ukraine
@@ -46,7 +46,7 @@ class Module extends BaseModule
     /**
      * @var string the module version
      */
-    private $version = "0.0.9";
+    private $version = "0.0.10";
 
     /**
      * @var integer, priority of initialization
@@ -66,6 +66,20 @@ class Module extends BaseModule
         // Set priority of current module
         $this->setPriority($this->priority);
 
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function dashboardNavItems($createLink = false)
+    {
+        $items = [
+            'label' => $this->name,
+            'url' => [$this->routePrefix . '/'. $this->id],
+            'icon' => 'fa-eye',
+            'active' => in_array(\Yii::$app->controller->module->id, [$this->id])
+        ];
+        return $items;
     }
 
     /**
