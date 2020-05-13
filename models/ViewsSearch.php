@@ -17,8 +17,8 @@ class ViewsSearch extends Views
     public function rules()
     {
         return [
-            [['id', 'user_id', 'target_id'], 'integer'],
-            [['user_ip', 'entity_id'], 'string'],
+            [['id', 'user_id'], 'integer'],
+            [['context', 'target'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -61,9 +61,8 @@ class ViewsSearch extends Views
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
-            'user_ip' => $this->user_ip,
-            'entity_id' => $this->entity_id,
-            'target_id' => $this->target_id,
+            'context' => $this->context,
+            'target' => $this->target,
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);

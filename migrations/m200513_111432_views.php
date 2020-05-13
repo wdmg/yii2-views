@@ -3,9 +3,9 @@
 use yii\db\Migration;
 
 /**
- * Class m190524_233522_views
+ * Class m200513_111432_views
  */
-class m190524_233522_views extends Migration
+class m200513_111432_views extends Migration
 {
     /**
      * {@inheritdoc}
@@ -19,17 +19,18 @@ class m190524_233522_views extends Migration
         }
 
         $this->createTable('{{%views}}', [
-            'id'=> $this->bigPrimaryKey(20),
+            'id'=> $this->bigInteger(),
+            'context' => $this->string(32)->notNull(),
+            'target' => $this->string(128)->notNull(),
+            'counter' => $this->integer()->defaultValue(1),
+            'params' => $this->text()->notNull(),
             'user_id' => $this->integer(),
-            'user_ip' => $this->string(39)->notNull(),
-            'entity_id' => $this->string(32)->notNull(),
-            'target_id' => $this->integer()->null(),
             'created_at' => $this->dateTime()->defaultExpression('CURRENT_TIMESTAMP'),
             'updated_at' => $this->datetime()->defaultExpression('CURRENT_TIMESTAMP'),
         ], $tableOptions);
 
-        $this->createIndex('idx_views_user','{{%views}}', ['user_id', 'user_ip'],false);
-        $this->createIndex('idx_views_condition','{{%views}}', ['entity_id', 'target_id'],false);
+        $this->createIndex('idx_views_user','{{%views}}', ['user_id'],false);
+        $this->createIndex('idx_views_condition','{{%views}}', ['context', 'target'],false);
 
         // If exist module `Users` set foreign key `user_id` to `users.id`
         if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {

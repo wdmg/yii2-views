@@ -8,16 +8,16 @@ use Yii;
  * This is the model class for table "{{%views}}".
  *
  * @property int $id
+ * @property string $context
+ * @property string $target
+ * @property int $counter
+ * @property string $params
  * @property int $user_id
- * @property string $user_ip
- * @property string $entity_id
- * @property int $target_id
  * @property string $created_at
  * @property string $updated_at
  *
  * @property Users $user
  */
-
 class Views extends \yii\db\ActiveRecord
 {
     /**
@@ -34,11 +34,11 @@ class Views extends \yii\db\ActiveRecord
     public function rules()
     {
         $rules = [
-            [['user_id', 'target_id'], 'integer'],
-            [['user_ip', 'entity_id', 'target_id'], 'required'],
-            [['user_ip'], 'string', 'max' => 39],
-            [['entity_id'], 'string', 'max' => 32],
-            [['created_at', 'updated_at'], 'safe'],
+            [['counter', 'user_id'], 'integer'],
+            [['context', 'target'], 'required'],
+            [['context'], 'string', 'max' => 32],
+            [['target'], 'string', 'max' => 128],
+            [['counter', 'created_at', 'updated_at'], 'safe'],
         ];
 
         if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
@@ -55,13 +55,36 @@ class Views extends \yii\db\ActiveRecord
     {
         return [
             'id' => Yii::t('app/modules/views', 'ID'),
+            'context' => Yii::t('app/modules/views', 'Context'),
+            'target' => Yii::t('app/modules/views', 'Target'),
+            'counter' => Yii::t('app/modules/views', 'Counter'),
+            'params' => Yii::t('app/modules/views', 'Params'),
             'user_id' => Yii::t('app/modules/views', 'User ID'),
-            'user_ip' => Yii::t('app/modules/views', 'User IP'),
-            'entity_id' => Yii::t('app/modules/views', 'Entity'),
-            'target_id' => Yii::t('app/modules/views', 'Target'),
             'created_at' => Yii::t('app/modules/views', 'Created At'),
             'updated_at' => Yii::t('app/modules/views', 'Updated At'),
         ];
+    }
+
+    public function beforeValidate()
+    {
+        if (is_array($this->params))
+            $this->params = serialize($this->params);
+
+        return parent::beforeValidate();
+    }
+
+    public function afterFind()
+    {
+        if (is_string($this->params))
+            $this->params = unserialize($this->params);
+
+        parent::afterFind();
+    }
+
+    public function beforeSave($insert)
+    {
+        $this->counter++;
+        return parent::beforeSave($insert);
     }
 
     /**

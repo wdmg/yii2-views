@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 0.*
+ * Added component for set/get views counter.
+ * Migrations.
+
 ## 0.0.12 (2020-04-28)
  * Update README.md and dependencies
  * Updating year in copyrights
