@@ -19,7 +19,7 @@ class m200513_111432_views extends Migration
         }
 
         $this->createTable('{{%views}}', [
-            'id'=> $this->bigInteger(),
+            'id'=> $this->bigPrimaryKey(),
             'context' => $this->string(32)->notNull(),
             'target' => $this->string(128)->notNull(),
             'counter' => $this->integer()->defaultValue(1),
