@@ -6,7 +6,7 @@ namespace wdmg\views;
  * Yii2 Views
  *
  * @category        Module
- * @version         0.0.12
+ * @version         1.0.0
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 - 2020 W.D.M.Group, Ukraine
@@ -44,9 +44,14 @@ class Module extends BaseModule
     public $description = "System of accounting user views";
 
     /**
+     * @var int hits cache lifetime, `0` - for not use cache
+     */
+    public $cacheExpire = 3600 * 24 * 7; // 1 week.
+
+    /**
      * @var string the module version
      */
-    private $version = "0.0.12";
+    private $version = "1.0.0";
 
     /**
      * @var integer, priority of initialization

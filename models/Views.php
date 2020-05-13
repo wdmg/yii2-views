@@ -3,6 +3,7 @@
 namespace wdmg\views\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "{{%views}}".
@@ -20,6 +21,8 @@ use Yii;
  */
 class Views extends \yii\db\ActiveRecord
 {
+    public $views;
+
     /**
      * {@inheritdoc}
      */
@@ -59,9 +62,10 @@ class Views extends \yii\db\ActiveRecord
             'target' => Yii::t('app/modules/views', 'Target'),
             'counter' => Yii::t('app/modules/views', 'Counter'),
             'params' => Yii::t('app/modules/views', 'Params'),
+            'views' => Yii::t('app/modules/views', 'Views'),
             'user_id' => Yii::t('app/modules/views', 'User ID'),
-            'created_at' => Yii::t('app/modules/views', 'Created At'),
-            'updated_at' => Yii::t('app/modules/views', 'Updated At'),
+            'created_at' => Yii::t('app/modules/views', 'Created'),
+            'updated_at' => Yii::t('app/modules/views', 'Updated'),
         ];
     }
 
@@ -96,5 +100,29 @@ class Views extends \yii\db\ActiveRecord
             return $this->hasOne(\wdmg\users\models\Users::class, ['id' => 'user_id']);
         else
             return null;
+    }
+
+    /**
+     * @return \yii\db\ActiveQuery
+     */
+    public function getViewsRangeList($allRanges = false)
+    {
+        $list = [];
+        if ($allRanges) {
+            $list = [
+                '*' => Yii::t('app/modules/views', 'All ranges')
+            ];
+        }
+
+        $list = ArrayHelper::merge($list, [
+            '< 1000' => Yii::t('app/modules/views', 'Less than 1K views'),
+            '>= 1000' => Yii::t('app/modules/views', 'Over 1K views'),
+            '>= 10000' => Yii::t('app/modules/views', 'Over 10K views'),
+            '> 100000' => Yii::t('app/modules/views', 'Over 100K views'),
+            '> 1000000' => Yii::t('app/modules/views', 'More than 1M views'),
+            '> 10000000' => Yii::t('app/modules/views', 'More than 10M views'),
+        ]);
+
+        return $list;
     }
 }

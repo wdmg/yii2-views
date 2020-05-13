@@ -11,6 +11,9 @@ use wdmg\views\models\Views;
  */
 class ViewsSearch extends Views
 {
+
+    public $range;
+
     /**
      * {@inheritdoc}
      */
@@ -18,7 +21,7 @@ class ViewsSearch extends Views
     {
         return [
             [['id', 'user_id'], 'integer'],
-            [['context', 'target'], 'string'],
+            [['context', 'target', 'range'], 'string'],
             [['created_at', 'updated_at'], 'safe'],
         ];
     }
@@ -61,7 +64,10 @@ class ViewsSearch extends Views
             return $dataProvider;
         }
 
-        // grid filtering conditions
+        // Group and sum counters
+        $query->select('id, user_id, context, target, created_at, updated_at, sum(counter) as views');
+
+        // Grid filtering conditions
         $query->andFilterWhere([
             'id' => $this->id,
             'user_id' => $this->user_id,
@@ -71,9 +77,50 @@ class ViewsSearch extends Views
             'updated_at' => $this->updated_at,
         ]);
 
-        // Group and sum counters
-        $query->select('id, user_id, context, target, created_at, updated_at, sum(counter ) as counter');
+
+        // Filter by range
+        if ($this->range !== "*") {
+            switch ($this->range) {
+                case '< 1000' :
+                    $query->having(['<', 'sum(counter)', 1000]);
+                    break;
+
+                case '>= 1000' :
+                    $query->having(['>=', 'sum(counter)', 1000]);
+                    break;
+
+                case '>= 10000' :
+                    $query->having(['>=', 'sum(counter)', (1000 * 10)]);
+                    break;
+
+                case '> 100000' :
+                    $query->having(['>', 'sum(counter)', (1000 * 100)]);
+                    break;
+
+                case '> 1000000' :
+                    $query->having(['>', 'sum(counter)', (1000 * 1000)]);
+                    break;
+
+                case '> 10000000' :
+                    $query->having(['>', 'sum(counter)', (1000 * 1000 * 10)]);
+                    break;
+            }
+        }
+
         $query->groupBy(['context', 'target']);
+
+        /*$dataProvider->setSort([
+            'attributes' => [
+                'id',
+                'fullName' => [
+                    'asc' => ['first_name' => SORT_ASC, 'last_name' => SORT_ASC],
+                    'desc' => ['first_name' => SORT_DESC, 'last_name' => SORT_DESC],
+                    'label' => 'Full Name',
+                    'default' => SORT_ASC
+                ],
+                'country_id'
+            ]
+        ]);*/
 
         return $dataProvider;
     }
