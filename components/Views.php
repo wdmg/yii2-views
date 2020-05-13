@@ -35,6 +35,13 @@ class Views extends Component
         $this->model = new \wdmg\views\models\Views;
     }
 
+    /**
+     * @param string $context
+     * @param null $target
+     * @return int|null
+     * @throws \yii\console\Exception
+     * @throws \yii\web\NotFoundHttpException
+     */
     public function get($context = 'default', $target = null) {
 
         if (is_null($context))
@@ -55,6 +62,14 @@ class Views extends Component
             return null;
     }
 
+    /**
+     * @param string $context
+     * @param null $target
+     * @param bool $returnCounter
+     * @return bool|int|null
+     * @throws \yii\console\Exception
+     * @throws \yii\web\NotFoundHttpException
+     */
     public function set($context = 'default', $target = null, $returnCounter = true) {
 
         if (is_null($context))
@@ -104,7 +119,7 @@ class Views extends Component
                             $count += $counter;
                         }
                     } else {
-                        $query->andWhere(['!=', 'user_id', null]);
+                        $query->andWhere(['!=', 'user_id', 0]);
                         if ($counter = $query->sum('counter')) {
                             $count += $counter;
                         }

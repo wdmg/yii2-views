@@ -44,9 +44,13 @@ class ViewsSearch extends Views
         $query = Views::find();
 
         // add conditions that should always apply here
-
         $dataProvider = new ActiveDataProvider([
             'query' => $query,
+            'sort'=> [
+                'defaultOrder' => [
+                    'counter' => SORT_DESC
+                ]
+            ]
         ]);
 
         $this->load($params);
@@ -66,6 +70,10 @@ class ViewsSearch extends Views
             'created_at' => $this->created_at,
             'updated_at' => $this->updated_at,
         ]);
+
+        // Group and sum counters
+        $query->select('id, user_id, context, target, created_at, updated_at, sum(counter ) as counter');
+        $query->groupBy(['context', 'target']);
 
         return $dataProvider;
     }

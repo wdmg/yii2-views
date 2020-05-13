@@ -24,11 +24,11 @@ $this->params['breadcrumbs'][] = $this->title;
         'layout' => '{summary}<br\/>{items}<br\/>{summary}<br\/><div class="text-center">{pager}</div>',
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-            'id',
             'context',
             'target',
             'counter',
-            'user_id',
+            //'user_id',
+            //'params',
             'created_at',
             'updated_at',
         ],
