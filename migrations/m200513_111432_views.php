@@ -33,7 +33,7 @@ class m200513_111432_views extends Migration
         $this->createIndex('idx_views_condition','{{%views}}', ['context', 'target'],false);
 
         // If exist module `Users` set foreign key `user_id` to `users.id`
-        if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
+        if (class_exists('\wdmg\users\models\Users')) {
             $userTable = \wdmg\users\models\Users::tableName();
             $this->addForeignKey(
                 'fk_views_to_users',
@@ -56,7 +56,7 @@ class m200513_111432_views extends Migration
         $this->dropIndex('idx_views_user', '{{%views}}');
         $this->dropIndex('idx_views_condition', '{{%views}}');
 
-        if(class_exists('\wdmg\users\models\Users') && isset(Yii::$app->modules['users'])) {
+        if (class_exists('\wdmg\users\models\Users')) {
             $userTable = \wdmg\users\models\Users::tableName();
             if (!(Yii::$app->db->getTableSchema($userTable, true) === null)) {
                 $this->dropForeignKey(
