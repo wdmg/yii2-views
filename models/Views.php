@@ -103,7 +103,8 @@ class Views extends \yii\db\ActiveRecord
     }
 
     /**
-     * @return \yii\db\ActiveQuery
+     * @param bool $allRanges
+     * @return array
      */
     public function getViewsRangeList($allRanges = false)
     {
