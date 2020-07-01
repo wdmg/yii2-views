@@ -7,7 +7,7 @@ namespace wdmg\views\components;
  * Yii2 Views
  *
  * @category        Component
- * @version         1.0.0
+ * @version         1.0.1
  * @author          Alexsander Vyshnyvetskyy <alex.vyshnyvetskyy@gmail.com>
  * @link            https://github.com/wdmg/yii2-views
  * @copyright       Copyright (c) 2019 - 2020 W.D.M.Group, Ukraine

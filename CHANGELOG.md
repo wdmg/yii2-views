@@ -1,6 +1,9 @@
 Changelog
 =========
 
+## 1.0.1 (2020-07-01)
+ * Update dependencies, README.md
+ 
 ## 1.0.0 (2020-05-14)
  * Added use cache for views hits.
  * Added component for set/get views counter.
