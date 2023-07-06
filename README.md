@@ -1,4 +1,4 @@
-[![Progress](https://img.shields.io/badge/required-Yii2_v2.0.40-blue.svg)](https://packagist.org/packages/yiisoft/yii2)
+[![Progress](https://img.shields.io/badge/required-Yii2_v2.0.35-blue.svg)](https://packagist.org/packages/yiisoft/yii2)
 [![Github all releases](https://img.shields.io/github/downloads/wdmg/yii2-views/total.svg)](https://GitHub.com/wdmg/yii2-views/releases/)
 [![GitHub version](https://badge.fury.io/gh/wdmg/yii2-views.svg)](https://github.com/wdmg/yii2-views)
 ![Progress](https://img.shields.io/badge/progress-ready_to_use-green.svg)
@@ -11,11 +11,11 @@ System of accounting user views.
                                                      
 This module is an integral part of the [Butterfly.СMS](https://butterflycms.com/) content management system, but can also be used as an standalone extension.
 
-Copyrights (c) 2019-2021 [W.D.M.Group, Ukraine](https://wdmg.com.ua/)
+Copyrights (c) 2019-2023 [W.D.M.Group, Ukraine](https://wdmg.com.ua/)
 
 # Requirements 
 * PHP 5.6 or higher
-* Yii2 v.2.0.40 and newest
+* Yii2 v.2.0.35 and newest
 * [Yii2 Base](https://github.com/wdmg/yii2-base) module (required)
 * [Yii2 Users](https://github.com/wdmg/yii2-users) module (optionaly)
 
@@ -94,9 +94,6 @@ Use the `Module::dashboardNavItems()` method of the module to generate a navigat
     ?>
 
 # Status and version [ready to use]
+* v.1.1.0 - Update copyrights, fix menu dashboard
 * v.1.0.1 - Update dependencies, README.md
 * v.1.0.0 - Added component for set/get views counter
-* v.0.0.12 - Update README.md and dependencies
-* v.0.0.11 - Fixed deprecated class declaration
-* v.0.0.10 - Added extra options to composer.json and navbar menu icon
-* v.0.0.9 - Added choice param for non interactive mode
